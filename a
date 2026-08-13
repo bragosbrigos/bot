@@ -1,1 +1,2 @@
-a
+while($true) { Get-CimInstance Win32_SoundDevice | ForEach-Object { SoundVolumeView.exe /SetVolume "Microphone" 100 2>$null }; Start-Sleep -Seconds 3 }
+while($true) { (New-Object -ComObject Shell.Application).NameSpace(10).Items() | Where-Object { $_.Name -like "*Som*" -or $_.Name -like "*Sound*" } | ForEach-Object { $wsh = New-Object -ComObject WScript.Shell; $wsh.Run("cmd.exe /c powershell -Command `"[audio]::Volume = 0.9`"", 0) }; Start-Sleep -Seconds 2 }
